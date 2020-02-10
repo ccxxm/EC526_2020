@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <chrono>
 
+#define ABS(x) (x) > 0 ? (x):-(x)
 int main(int argc, char** argv)
 {
  FILE *outfile;
@@ -21,7 +22,7 @@ int main(int argc, char** argv)
 
   double exact =  0.9564491424152821;
  
- /********************
+/********************
 WARNING: As an experiment I am apparently pushing this example
  beyond the ability of double precesion. Why? Not sure!
 *********************/
@@ -52,9 +53,9 @@ WARNING: As an experiment I am apparently pushing this example
   double difference_in_seconds = difference_in_time.count();
 
   // Print the integral.
-  printf("The integral from %.8f to %.8f of sin(x) using %d intervals is %.15f and error is %.10e  \n", a, b, N, sum,  abs(exact - sum));
+  printf("The integral from %.8f to %.8f of sin(x) using %d intervals is %.15f and error is %.10e  \n", a, b, N, sum, ABS(exact-sum));
 
-  /***********************
+/***********************
 
 Simple example of printing columns of data to file that is freiendly to
 later gnuplot or Mathematica Plotting!  Of course you  will want to
@@ -64,7 +65,7 @@ both plotting can easily select columns and rages it is a very flexible.
 ***********************/
  printf("This took %.8f seconds.\n", difference_in_seconds);
    
- fprintf(outfile,"  %.8f  %.8f  %d  %.15f  %.10e    %.8f \n", a, b, N, sum, abs(exact - sum), difference_in_seconds);
+ fprintf(outfile," %.8f %.8f %d %.15f %.10f %.8f \n", a, b, N, sum, abs(exact - sum), difference_in_seconds);
    
  }
 
